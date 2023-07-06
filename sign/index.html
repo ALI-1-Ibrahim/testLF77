@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../imgs/3t.png">
+
+    <title>Samsarly Sign In</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel="stylesheet" href="css/sign-up.css">
+    <link rel="stylesheet" href="css/sign-in.css">
+</head>
+
+<body onload='if(localStorage.getItem("opid")){window.history.forward()}'>
+    <div class="container">
+        <div class="sign-container">
+            <div class="logo">
+                <img src="images/samsarly-logo-light.png" alt="samsarly-logo-light">
+            </div>
+            <div class="sign-text">
+                <h3 class="sign-in">sign in</h3>
+                <h3 class="sign-up"><a href="sign-up.html">sign up</a></h3>
+            </div>
+            <form id="form2" action="../home page/main.html">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" id="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <i class="fa-solid fa-lock"></i><i class="fa-solid fa-eye" id="eye" onclick='if (document.querySelector(".password").type === "password") { document.querySelector(".password").type = "text"; } else { document.querySelector(".password").type = "password"; }'></i>
+                <input type="password" name="password" placeholder="Password" class="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+
+                <div id="fp">forget password ?</div>
+                <input id="sign_in" type="submit" value="Sign In">
+
+
+
+            </form>
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+        </div>
+    </div>
+    <script src="js/sign-in.js" type="module"></script>
+    <script src="js/all.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Appartment</title>
+    <link rel="icon" type="image/x-icon" href="../imgs/3t.png">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/profile.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">             -->
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+<body   onclick="hidetokens()">
+    <div id = "TitlePar" style="display: flex; position: fixed;">
+        <div id="menuandprofile">
+            <input type="checkbox" id="active">
+            <label for="active" class="menu-btn">
+                <!-- <img src="../imgs/menue.png"width = "20px" id = "menu_ParsAndClose"> -->
+                <i class="fa fa-bars" style="font-size:28px;"id = "menu_ParsAndClose"></i>
+            </label>
+            <a href="../profile page/main.html" style="text-decoration: none;"><img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" id="profilepic"  style="border-radius: 100%;width: 45px;height: 45px;"></a>
+
+            <div class="wrapper">
+                <ul>
+                    <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img id="SAMSARLYLOGOo"  style="width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div>
+                    <!-- <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img src="../imgs/3t.png" id="SAMSARLYLOGO"  style="border-radius: 100%;width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div> -->
+                    <li onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" lng-tag="home"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../my properties/main.html" lng-tag="my_properties"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="main.html" lng-tag="savetitle"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../account setting/account-setting.html" lng-tag="acc_Settings"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../setting page/main.html" lng-tag="settings"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../about page/main.html" lng-tag="about"></a></li>
+                    <li onclick="document.getElementById('active').checked=false;window.location.replace('../sign/index.html');localStorage.removeItem('myid');localStorage.removeItem('opid');localStorage.removeItem('google');"><a href="#" lng-tag="log_out"></a></li>
+                </ul>
+            </div>
+        </div>    
+        <p style="font-size: 25px;font-weight: bold;" class = 'title' lng-tag="savetitle"></p>
+        <div id="icons">
+            <div  id="token" style="display: flex;flex-direction: column;align-items: center;" onclick="showtokens()">
+                <i class='fas fa-coins' id="token1"></i>
+                <div id="inner_tokens"></div>
+            </div>
+            <!-- <i class='fas fa-coins' id="token" style="font-size:28px;" onclick="showtokens()"></i> -->
+            <i class="fa fa-bell" style="font-size:28px;padding:0% 1%;"></i>
+        </div>
+    </div>
+    <!-- <div id='map' style="z-index: 50;"></div> -->
+
+    <div id="MyPropertiesBody" style="display: flex;flex-direction: column;margin-top: 70px;width: 100%;color: white;">
+
+    </div>
+    
+
+
+
+
+
+    <div id= "divPar" style="transition: width 0.5s ease 0s, height 0.5s ease 0s;position: fixed;top: 10%;">
+        <div id = "ApartmentTitleParPar" style="display: flex;position: sticky;top: 0;">
+            <button id = "XBTNPar">X</button> <!--X button-->
+            <p style="font-size: 25px;font-weight: bold;" class = 'title'  lng-tag="apartment"></p>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <button id="btn" role="button" class="direction" lng-tag="direction" style="padding: 2% 4%;"></button>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        </div>
+
+        
+        <div id="ApartmentBodyPar" style="width: 100%;height: 100%;">
+            <div id="ApartmentDataPar"style="width: 100%;">
+                <!-- <button id="btn" role="button" style="width: 100%;" lng-tag="reveal_pho"></button> -->
+                <!-- <button style="overflow: hidden;">Reveal Phone Number</button> -->
+                <!-- <label for="addresss">Address</label> -->
+                <!-- </div> -->
+                <h1 id="state"></h1>
+
+                <div style="display: flex;width: 100%;justify-content: space-between;flex-wrap: wrap;">
+                    <fieldset style="width: 100%;">
+                    <legend lng-tag="name"></legend> 
+                    <i class="fa-sharp fa-solid fa-address-card" style="padding-right: 2%;padding-left: 2%;"></i>
+                <p id="namee"></p> 
+                </fieldset>
+                <fieldset style="width: 100%;">
+                    <legend lng-tag="pho"></legend> 
+                    <i class="fa-solid fa-phone" style="padding-right: 2%;padding-left: 2%;"></i>
+                <p id="phonee"></p> 
+                </fieldset>
+                </div>
+                <fieldset style="width: 100%;">
+                    <legend lng-tag="address"></legend> 
+                    <i class="fa-solid fa-building" style="padding-right: 2%;padding-left: 2%;"></i>
+
+                <p id="addresss"></p> 
+                </fieldset>
+
+                
+                <div style="display: flex;justify-content: space-between;;width: 100%;">
+                    <!-- <label for="pricee">Price</label> -->
+                    <fieldset style="width: 40%;">
+                        <legend lng-tag="price"></legend> 
+                        <i class="fa-solid fa-dollar-sign" style="padding-right: 5%;padding-left: 5%;"></i>
+
+                        <p id="pricee"></p> 
+                    </fieldset>
+                    
+                    <!-- <label for="roomss"></label><pre>  </pre>Rooms</label> -->
+                    <fieldset style="width: 40%;">
+                        <legend lng-tag="rooms"></legend> 
+                        <i class="fa-solid fa-door-open" style="padding-right: 5%;padding-left: 5%;"></i>
+
+                    <p id="roomss"></p> 
+                    </fieldset>
+                </div>
+
+                <fieldset style="width: 40%;">
+                    <legend lng-tag="bathroom"></legend> 
+                    <i class="fa-solid fa-bath" style="padding-right: 2%;padding-left: 2%;"></i>
+                    <p id="bathroomss"></p> 
+                </fieldset>
+
+
+                <div id="gasdiv" style="display: flex;justify-content: space-between;margin: 1%;">
+                    <i class="fas fa-gas-pump" style="cursor: auto;"></i>
+                    <label for="gass" lng-tag="gas"></label>
+                    <i id="gass"></i>
+                </div>
+                <div id="furnisheddiv" style="display: flex;justify-content: space-between;margin: 1%;">
+                    <i class="fa-solid fa-couch" style="cursor: auto;"></i>
+                    <label for="furnishedd" lng-tag="furnished"></label>
+                    <i id="furnishedd"></i>
+                </div>
+                
+            </div>
+            <div id = "ApartmentImagesPar" style="display: flex;flex-direction: column;width: 100%;">
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box">
+        <div class="box-arrow-border">
+          <div class="box-arrow-background"></div>
+        </div>
+        <div class="box-content">
+            <p lng-tag="tokens" style="color: white;font-size:xx-large;"></p>
+            <button id="btn" lng-tag="watch_ads" onclick="window.location.assign('../Ad Page/main.html')"></button>
+            <button id="btn" lng-tag="invite"  onclick="window.location.assign('../invite/main.html')"></button>
+            <button id="btn" lng-tag="subscribe" onclick="window.location.assign('../Payment page/main.html')"></button>
+        </div>
+      </div>        
+
+    <div id="PreLoader" dir="ltr">
+        <P class="p">l</p>
+        <P class="p">o</p>
+        <P class="p">a</p>
+        <P class="p">d</p>
+        <P class="p">i</p>
+        <P class="p">n</p>
+        <P class="p">g</p>
+    </div>
+    <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script> -->
+
+    <script src="../js/lang.js"></script>
+    <script src="main.js" type="module"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

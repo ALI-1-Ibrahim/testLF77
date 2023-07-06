@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../imgs/3t.png">
+
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/sign-in.css">
+    <link rel="stylesheet" href="css/sign-up.css">
+    <link rel="stylesheet" href="css/all.min.css">
+
+<style>
+    #loader {
+    width: 25px;
+    height: 25px;
+    margin: 0px 0 0 0px;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    /* margin: 50%; */
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="logo">
+                <img src="images/samsarly-logo-light.png" alt="samsarly">
+            </div>
+            <div class="txt">
+                <h3 class="sign-in"><a href="index.html">sign in</a></h3>
+                <h3 class="sign-up">sign up</h3>
+            </div>
+            <form id="form" action="Enter I Code.html">
+                <i class="fa-solid fa-user"></i>
+                <input id="name" type="text" placeholder="Name" pattern="([^\s][A-z0-9À-ž\s]+)" required>
+                <i class="fa-solid fa-envelope"></i>
+                <input id="email" type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required>
+                <i class="fa-solid fa-lock"></i>
+                <input class="password" type="password" placeholder="Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <i class="fa-solid fa-phone"></i>
+                <input id="phone" type="tel" placeholder="Phone Number" pattern="^(00201|\+201|01)[0-2,5]{1}[0-9]{8}$"
+                    required>
+
+
+                <div class="selectt">
+                    <i class="fa-solid fa-id-card"></i>
+                    <input class="idd" type="text" placeholder="ID"
+                        pattern="^([1-9]{1})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})[0-9]{3}([0-9]{1})[0-9]{1}$"
+                        maxlength="14" minlength="14" required>
+                    <i class="fa-solid fa-eye" id="eye" onclick='if (document.querySelector(".password").type === "password") { document.querySelector(".password").type = "text"; } else { document.querySelector(".password").type = "password"; }'></i>
+                    <select name="gender" id="gend" required>
+                        <option disabled selected hidden value="" class="gender">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div id="google"><img src="../imgs/g.png" style="width: 50px;">Sign in with google account</div>
+                <button id="googlesign" type="submit" class="newsub" style="display: none;">Sign in with google account</button>
+
+                <!-- <input id="sign_up" type="submit" value="Sign Up"> -->
+                <button id="sign_up" class="newsub" type="submit" >Sign Up</button>
+            </form>
+            <p id="senemail" style="display: flex; justify-content: center; position: relative; top: 6%; font-size: larger; color: white;display: none;" ></p>
+            <p id="timer" style="display: flex; justify-content: center; position: relative; top: 6%; font-size: larger; color: white;display: none;" >60</p>
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/sign-in.js" type="module"></script>
+    <script src="js/all.min.js"></script>
+
+</body>
+
+</html>

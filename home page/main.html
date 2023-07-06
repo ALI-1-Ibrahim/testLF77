@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Page</title>
+<link rel="icon" type="image/x-icon" href="../imgs/3t.png">
+
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/filter.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="../css/all.min.css">
+<link rel="stylesheet" href="../css/normalize.css">
+
+<!--  -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">             -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
+    <!--  -->
+
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+<!-- <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' /> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<style>
+    div.box{
+        right: 14px;
+    }
+</style>
+</head>
+<body style="margin: 0;padding: 0;"  onclick="hidetokens()">
+
+
+
+<!--  -->
+<div id = "TitlePar" style="display: flex;">
+    <div id="menuandprofile">
+        <input type="checkbox" id="active">
+        <label for="active" class="menu-btn">
+            <!-- <img src="../imgs/menue.png"width = "20px" id = "menu_ParsAndClose"> -->
+            <i class="fa fa-bars" style="font-size:28px;"id = "menu_ParsAndClose"></i>
+        </label>
+        <a href="../profile page/main.html" style="text-decoration: none;"><img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" id="profilepic"  style="border-radius: 100%;width: 45px;height: 45px;"></a>
+
+        <div class="wrapper">
+            <ul>
+                <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img id="SAMSARLYLOGOo"  style="width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div>
+                <!-- <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img src="../imgs/3t.png" id="SAMSARLYLOGO"  style="border-radius: 100%;width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div> -->
+                <li onclick="document.getElementById('active').checked=false"><a href="main.html" lng-tag="home"></a></li>
+                <li onclick="document.getElementById('active').checked=false"><a href="../my properties/main.html" lng-tag="my_properties"></a></li>
+                <li onclick="document.getElementById('active').checked=false"><a href="../Saved appartment/main.html" lng-tag="savetitle"></a></li>
+                <li onclick="document.getElementById('active').checked=false"><a href="../account setting/account-setting.html" lng-tag="acc_Settings"></a></li>
+                <li onclick="document.getElementById('active').checked=false"><a href="../setting page/main.html" lng-tag="settings"></a></li>
+                <li onclick="document.getElementById('active').checked=false"><a href="../about page/main.html" lng-tag="about"></a></li>
+                <li onclick="document.getElementById('active').checked=false;window.location.replace('../sign/index.html');localStorage.removeItem('myid');localStorage.removeItem('opid');localStorage.removeItem('google');"><a href="#" lng-tag="log_out"></a></li>
+            </ul>
+        </div>
+    </div>
+    <p style="font-size: 25px;font-weight: bold;" class = 'title' lng-tag="home"></p>
+    <!-- <button id="btn" role="button" lng-tag="reveal_pho" style="width: auto; font-size: 68%;padding: 14px 10px;" onclick="reload()"></button> -->
+    <div id="icons">
+        <button id="btn" class="reload" role="button" lng-tag="reloade" style="padding: 5% 10%;"></button>
+        <div  id="token" style="display: flex;flex-direction: column;align-items: center;" onclick="showtokens()">
+            <i class='fas fa-coins' id="token1"></i>
+            <div id="inner_tokens"></div>
+        </div>
+        <!-- <i class='fas fa-coins' id="token" style="font-size:28px;" onclick="showtokens()"></i> -->
+        <i class="fa fa-bell" style="font-size:28px;padding-left: 1%;"></i>
+    </div>
+</div>
+
+<!-- <div style="display: flex; width: auto;justify-content: center;"> -->
+    <div id='map'></div>
+    <!-- <div id="instructions" style="z-index: 10;">
+        
+
+        LOODING...
+    </div> -->
+<!-- <div id="loading" style="transition: width 0.5s ease 0s, height 0.5s ease 0s;width: 100%;height: 100%;z-index: 96;background-color: white;position: absolute;display: flex;justify-content: center;align-items: center;">
+    LOODING...
+</div> -->
+<!-- <div class="centerr" id="loading">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div> -->
+  <div id="loaderr"></div>
+    <div id= "div">
+        <div id = "ApartmentTitlePar" style="display: flex;position: sticky;top: 0;">
+            <button id = "XBTN">X</button> <!--X button-->
+            <p style="font-size: 25px;font-weight: bold;" class = 'title'  lng-tag="apartment"></p>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <button id="btn" role="button" class='direction' lng-tag="direction" style="padding: 2% 4%;"></button>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        </div>
+
+        
+        <div id="ApartmentBody" style="width: 100%;height: 100%;">
+            <div id="snackbar"></div>
+
+            <div id="mineornote"><p  lng-tag="yourapartment"></p></div>
+            <div id="ApartmentData"style="width: 100%;">
+                <div style="display: flex;width: 100%;justify-content: space-between;align-items: center;flex-direction: column;" id="btndiv">
+                <button id="btn" class="rev" role="button" lng-tag="reveal_pho" style="display: flex;"></button>
+                <div style="padding: 1%;" id="space"></div>
+                <button id="btn" class="sav" role="button" lng-tag="save"></button>
+                </div>
+                <h1 id="state"></h1>
+                <div style="display: flex;width: 100%;justify-content: space-between;flex-wrap: wrap;">
+                    <fieldset style="width: 100%;" class="phone">
+                    <legend lng-tag="name" class="phone"></legend> 
+                    <i class="fa-sharp fa-solid fa-address-card" style="padding-right: 2%;padding-left: 2%;" class="phone"></i>
+                <p id="namee" class="phone"></p> 
+                </fieldset>
+                <fieldset style="width: 100%;" class="phone">
+                    <legend lng-tag="pho" class="phone"></legend> 
+                    <i class="fa-solid fa-phone" style="padding-right: 2%;padding-left: 2%;" class="phone"></i>
+                <p id="phonee" class="phone"></p> 
+                </fieldset>
+                </div>
+                
+                <!-- <button style="overflow: hidden;">Reveal Phone Number</button> -->
+                <!-- <label for="addresss">Address</label> -->
+                <fieldset style="width: 100%;">
+                    <legend lng-tag="address"></legend> 
+                    <i class="fa-solid fa-building" style="padding-right: 2%;padding-left: 2%;"></i>
+
+                <p id="addresss"></p> 
+                </fieldset>
+
+                
+                <div style="display: flex;justify-content: space-between;;width: 100%;">
+                    <!-- <label for="pricee">Price</label> -->
+                    <fieldset style="width: 40%;">
+                        <legend lng-tag="price"></legend> 
+                        <i class="fa-solid fa-dollar-sign" style="padding-right: 5%;padding-left: 5%;"></i>
+
+                        <p id="pricee"></p> 
+                    </fieldset>
+                    
+                    <!-- <label for="roomss"></label><pre>  </pre>Rooms</label> -->
+                    <fieldset style="width: 40%;">
+                        <legend lng-tag="rooms"></legend> 
+                        <i class="fa-solid fa-door-open" style="padding-right: 5%;padding-left: 5%;"></i>
+
+                    <p id="roomss"></p> 
+                    </fieldset>
+                </div>
+
+                <fieldset style="width: 40%;">
+                    <legend lng-tag="bathroom"></legend> 
+                    <i class="fa-solid fa-bath" style="padding-right: 2%;padding-left: 2%;"></i>
+                    <p id="bathroomss"></p> 
+                </fieldset>
+
+
+                <div id="gasdiv" style="display: flex;justify-content: space-between;margin: 1%;">
+                    <i class="fas fa-gas-pump" style="cursor: auto;"></i>
+                    <label for="gass" lng-tag="gas"></label>
+                    <i id="gass"></i>
+                </div>
+                <div id="furnisheddiv" style="display: flex;justify-content: space-between;margin: 1%;">
+                    <i class="fa-solid fa-couch" style="cursor: auto;"></i>
+                    <label for="furnishedd" lng-tag="furnished"></label>
+                    <i id="furnishedd"></i>
+                </div>
+                
+            </div>
+            <div id = "ApartmentImages" style="display: flex;flex-direction: column;width: 100%;">
+                <div id="loaderrr"></div>
+
+            </div>
+        </div>
+        
+    </div>
+<!-- </div> -->
+<!-- <div id  = 'fa'><i class="fa fa-building" style="font-size:36px"></i></div> -->
+<!-- <img id  = 'fa' src="icon.png" width="32px" height="32px"> -->
+<!-- <button id = 'bu'> Click Here</button> -->
+
+    <!--  -->
+    <button id = "XBTN" class="XBTN" style="position: fixed;bottom: 18%;display: none;z-index: 10;" onclick="StopGps()">X</button> <!--X button-->
+    <div class="box">
+        <div class="box-arrow-border">
+          <div class="box-arrow-background"></div>
+        </div>
+        <div class="box-content">
+            <p lng-tag="tokens" style="color: white;font-size:xx-large;"></p>
+            <button id="btn" lng-tag="watch_ads" onclick="window.location.assign('../Ad Page/main.html')"></button>
+            <button id="btn" lng-tag="invite" onclick="window.location.assign('../invite/main.html')"></button>
+            <button id="btn" lng-tag="subscribe" onclick="window.location.assign('../Payment page/main.html')"></button>
+        </div>
+      </div>        
+<div id="PreLoader" dir="ltr">
+    <P class="p">l</p>
+    <P class="p">o</p>
+    <P class="p">a</p>
+    <P class="p">d</p>
+    <P class="p">i</p>
+    <P class="p">n</p>
+    <P class="p">g</p>
+</div>
+<!-- <div class="circles">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+    <div class="circle5"></div>
+    <div class="circle6"></div>
+    <div class="circle7"></div>
+    <div class="circle8"></div>
+    <div class="circle9"></div>
+    <div class="circle10"></div>
+    <div class="circle11"></div>
+    <div class="circle12"></div>
+    <div class="circle13"></div>
+    <div class="circle14"></div>
+    <div class="circle15"></div>
+</div> -->
+<!-- <div class="wrapperf">
+    <ul>
+        <li><a href="main.html" lng-tag="home"></a></li>
+        <li><a href="../my properties/main.html" lng-tag="my_properties"></a></li>
+        <li><a href="#" lng-tag="acc_Settings"></a></li>
+        <li><a href="../setting page/main.html" lng-tag="settings"></a></li>
+        <li><a href="../about page/main.html" lng-tag="about"></a></li>
+        <li><a href="#" lng-tag="log_out"></a></li>
+    </ul>
+</div> -->
+
+
+<input type="checkbox" id="activef">
+       
+<div class="wrapperf">
+    <i class="fa-solid fa-x" style="margin: 10px;font-size:28px;" onclick="document.getElementById('activef').checked=false;"></i>
+
+    <!-- <ul> -->
+    <div class="sldiv0">
+        <div class="sldiv">
+            <div class="sl">
+                <div class="slt">
+                    <p style="color: white;" lng-tag="price"></p>
+                    <p id="demo1" style="color: white;"></p>
+                </div>
+                <input type="range" class="slider" class="pp" id="Slider_Price">
+            </div>
+
+            <div class="sl">
+                <div class="slt">
+                <p style="color: white;" lng-tag="rooms"></p>
+                <p id="demo2" style="color: white;"></p>
+                </div>
+                <input type="range" class="slider" id="Slider_room">
+            </div>
+
+
+            <div class="sl">
+                <div class="slt">
+                <p style="color: white;" lng-tag="bathroom"></p>
+                <p id="demo3" style="color: white;"></p>
+                </div>
+                <input type="range" class="slider" id="Slider_bathroom">
+            </div>
+            <div style="display: flex;justify-content: space-evenly;margin-bottom: 5%;">
+                <div style="display: flex;align-items: center; width: 10%; justify-content: space-around;">
+                    <label for="c_gas" lng-tag="gas" style="color: white;"></label>
+                    <div id="c_gas">
+                        <!-- Toggle Button Style 28 -->
+                        <label class="toggler-wrapper style-28">
+                            <input type="checkbox" id="check_gas" value="yes">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                        <!-- End Toggle Button Style 28 -->
+                        <!-- <div class="badge">Style 28</div> -->
+                    </div>
+
+                </div>
+                <div style="display: flex;align-items: center; width: 10%; justify-content: space-around;">
+                    <label for="c_furnished" lng-tag="furnished" style="color: white;"></label>
+                    <div id="c_furnished">
+                        <!-- Toggle Button Style 28 -->
+                        <label class="toggler-wrapper style-28">
+                            <input type="checkbox" id="check_furnished" value="yes">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                        <!-- End Toggle Button Style 28 -->
+                        <!-- <div class="badge">Style 28</div> -->
+                    </div>
+                </div>
+
+            </div>
+            <div style="display: flex;justify-content: space-evenly;margin-bottom: 5%;">
+                <div style="display: flex;align-items: center; width: 10%; justify-content: space-around;">
+                    <!-- <label for="c_gas" lng-tag="gas" style="color: white;"></label> -->
+                    <div id="c_state">
+                        <!-- Toggle Button Style 28 -->
+                        <label class="toggler-wrapper style-28">
+                            <input type="checkbox" id="check_state" value="yes">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                        <!-- End Toggle Button Style 28 -->
+                        <!-- <div class="badge">Style 28</div> -->
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- </ul> -->
+            <!-- <button id="btn" onclick="filter()">fkljfj</button> -->
+            <button id="btn" class="filter" lng-tag="filter"></button>
+        </div>
+    </div>
+
+
+</div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="../js/lang.js"></script>
+<script src="main.js" type="module"></script>
+
+<!-- for arabic direction on gps direction -->
+
+<style>
+    .mapboxgl-user-location{
+        direction: ltr; 
+    }
+</style>
+</body>
+</html>
+
