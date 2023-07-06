@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+  }
+  :root {
+    --main-color: rgb(45, 72, 99);
+    --button-color: #8296bb;
+  }
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+  .boxx {
+    z-index: 9;
+    width: 30%;
+    height: 66%;
+    background-color:#425776;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    display: flex;
+  }
+  
+  .txt {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-bottom: 25px;
+  }
+    
+  form {
+    display: grid;
+    width: 90%;
+    margin: auto;
+    gap: 20px;
+    position: relative;
+  }
+  .input {
+    padding-top: 50px;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    border-radius: 19px;
+    outline: none;
+    position: relative;
+  }
+  form svg {
+    position: absolute;
+    color: #425776;
+    z-index: 3;
+    left: 135px;
+  }
+  
+ 
+   .boxx form svg.fa-user {
+    top: 160px;
+    left: 10px;
+    
+  }
+  .boxx form svg.fa-phone {
+    top: 158px;
+    left: 70px;
+    
+  }
+  .boxx form svg.fa-envelope {
+    top: 158px;
+    left: 70px;
+    
+  }
+  
+  .boxx form .input{
+    
+    font-weight: bold;
+    padding-top: 10px;
+    padding: 10px 10%;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+    /* margin-top: 150px; */
+  }
+  .boxx form input[type="submit"]{
+    color: white;
+    font-weight: bold;
+    border-radius: 19px;
+    background-color: var(--button-color);
+    padding: 10px 35px;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+    border: none;
+  }
+  .boxx form input[type="reset"]{
+    color: white;
+    font-weight: bold;
+    border-radius: 19px;
+    background-color: var(--button-color);
+    padding: 10px 35px;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .boxx form input[type="submit"]:hover {
+    background-color: #131f34;
+    border: 1px solid white;
+  }
+  .boxx form input[type="reset"]:hover {
+    background-color: #425776;
+    border: 1px solid white;
+  }
+  input[value="Save"] {
+    font-size: 16px;
+  }
+  input[value="Cancel"] {
+    font-size: 16px;
+  }
+  
+  .submit{display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+  @media (max-width: 1024px) {
+    .form-box {
+      width: 50%;
+      height: 80%;
+    }
+    .boxx .logo img {
+      width: 110px;
+    }
+    .boxx .txt {
+      font-size: 23px;
+    }
+    .boxx form {
+      gap: 15px;
+    }
+    .boxx form svg.fa-user {
+      top: 160px;
+    left: 10px;
+      
+    }
+    .boxx form svg.fa-phone {
+      top: 158px;
+      left: 10px;
+      
+    }
+    .boxx form svg.fa-envelope {
+      top: 158px;
+      left: 70px;
+      
+    }
+    
+  }
+  @media (max-width: 750px) {
+    .boxx {
+      width: 70%;
+      height: 80%;
+    }
+    form{
+      width:90%;
+    }
+    .boxx form svg.fa-user {
+      top: 160px;
+    left: 10px;
+      
+    }
+    .boxx form svg.fa-phone {
+      top: 158px;
+      left: 70px;
+      
+    }
+    .boxx form svg.fa-envelope {
+      top: 158px;
+      left: 70px;
+      
+    }
+    
+  }
+    @media (max-width: 400px) {
+      .boxx {
+        width: 98%;
+        height: 80%;
+      }
+      form{
+        width:98%;
+      }
+      .boxx form svg.fa-user {
+        top: 160px;
+    left: 10px;
+        
+      }
+      .boxx form svg.fa-phone {
+        top: 158px;
+        left: 70px;
+        
+      }
+      .boxx form svg.fa-envelope {
+        top: 158px;
+        left: 70px;
+        
+      }
+  }
+  

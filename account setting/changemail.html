@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change email</title>
+    <link rel="icon" type="image/x-icon" href="../imgs/3t.png">
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="account setting1/css/style.css">
+    <link rel="stylesheet" href="account setting1/css/all.min.css">
+    <link rel="stylesheet" href="account setting1/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+<body  onclick="hidetokens()">
+    <div id = "TitlePar" style="display: flex;">
+        <div id="menuandprofile">
+            <input type="checkbox" id="active">
+            <label for="active" class="menu-btn">
+                <!-- <img src="../imgs/menue.png"width = "20px" id = "menu_ParsAndClose"> -->
+                <i class="fa fa-bars" style="font-size:28px;"id = "menu_ParsAndClose"></i>
+            </label>
+            <a href="../profile page/main.html" style="text-decoration: none;"><img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" id="profilepic"  style="border-radius: 100%;width: 45px;height: 45px;"></a>
+    
+            <div class="wrapper">
+                <ul>
+                    <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img id="SAMSARLYLOGOo"  style="width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div>
+                    <!-- <div onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" style="text-decoration: none;"><img src="../imgs/3t.png" id="SAMSARLYLOGO"  style="border-radius: 100%;width: 200px;background: linear-gradient(to top right, #ffffff -11%, blue 100%)"></a></div> -->
+                    <li onclick="document.getElementById('active').checked=false"><a href="../home page/main.html" lng-tag="home"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../my properties/main.html" lng-tag="my_properties"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../Saved appartment/main.html" lng-tag="savetitle"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="account-setting.html" lng-tag="acc_Settings"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../setting page/main.html" lng-tag="settings"></a></li>
+                    <li onclick="document.getElementById('active').checked=false"><a href="../about page/main.html" lng-tag="about"></a></li>
+                    <li onclick="document.getElementById('active').checked=false;window.location.replace('../sign/index.html');localStorage.removeItem('myid');localStorage.removeItem('opid');localStorage.removeItem('google');"><a href="#" lng-tag="log_out"></a></li>
+                </ul>
+            </div>
+        </div>
+        <p style="font-size: 25px;font-weight: bold;" class = 'title' lng-tag="cmail"></p>
+        <!-- <button id="btn" role="button" lng-tag="reveal_pho" style="width: auto; font-size: 68%;padding: 14px 10px;" onclick="reload()"></button> -->
+        <div id="icons">
+            <div  id="token" style="display: flex;flex-direction: column;align-items: center;" onclick="showtokens()">
+                <i class='fas fa-coins' id="token1"></i>
+                <div id="inner_tokens"></div>
+            </div>
+            <!-- <i class='fas fa-coins' id="token" style="font-size:28px;" onclick="showtokens()"></i> -->
+            <i class="fa fa-bell" style="font-size:28px;padding-left: 1%;"></i>
+        </div>
+    </div>
+    
+    <div class="boxx">
+        
+            
+        <form id="formm" action="account-setting.html">
+            <fieldset style="width: 100%;padding: 0%;background-color: #ffffff;border: none;">
+            <i class="fa-solid fa-envelope" style="padding-right: 2%;padding-left: 2%;color: #425776;"></i>
+            <input type="email" id="email" class="newinput" placeholder="Enter new mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required style="background-color: transparent;width: 100%;height: 100%;border: 0px;padding: 0.35em 0.75em 0.625em;" spellcheck="true" required>
+            </fieldset>
+
+            <!-- <i class="fa-solid fa-envelope"></i>
+            <input class="input" id="email" type="email" placeholder="Enter new mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required> -->
+        
+            <div class="submit">
+            <input id="Savem" type="submit" value="Save">
+            <input id="Cancel" type="reset" value="Cancel">
+        </div>
+       </form>
+       
+
+    
+    </div>
+
+    
+    <div class="box">
+        <div class="box-arrow-border">
+          <div class="box-arrow-background"></div>
+        </div>
+        <div class="box-content">
+            <p lng-tag="tokens" style="color: white;font-size:xx-large;"></p>
+            <button id="btn" lng-tag="watch_ads" onclick="window.location.assign('../Ad Page/main.html')"></button>
+            <button id="btn" lng-tag="invite"  onclick="window.location.assign('../invite/main.html')"></button>
+            <button id="btn" lng-tag="subscribe" onclick="window.location.assign('../Payment page/main.html')"></button>
+        </div>
+      </div>        
+        </div>
+    
+        <!-- <div id="PreLoader"></div> -->
+        <div id="PreLoader" dir="ltr">
+            <P class="p">l</p>
+            <P class="p">o</p>
+            <P class="p">a</p>
+            <P class="p">d</p>
+            <P class="p">i</p>
+            <P class="p">n</p>
+            <P class="p">g</p>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="../js/lang.js"></script>
+    <script src="account setting1/js/script.js" type="module"></script>
+    <!-- <script src="account setting1/js/all.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="account setting1/js/profile.js"></script> -->
+
+</body>
+</html>
